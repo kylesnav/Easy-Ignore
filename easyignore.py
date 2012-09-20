@@ -6,12 +6,14 @@ file = '.gitignore' # do not change this value.
 
 os.chdir(repo)
 
-if os.path.exists(file):
-    file = open(file, 'a+')
-else:
+if os.path.exists(file): 
+    file = open(file, 'r+')
+    exist = file.readlines()
+    for i in ignore:
+        if i in exist: continue
+        else: file.write(i)
+        
+else: 
     file = open(file, 'w+')
-    
-for i in ignore:
-    # add check to see if file is in the .gitignore.
-    file.write(i + '\n')
-    
+    for i in ignore:
+        file.write(i)
